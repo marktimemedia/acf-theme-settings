@@ -9,31 +9,44 @@ function mtm_acf_check() { // Does ACF Exist?
 
 // Output header logo inside image tag, with link to homepage
 // Optionally specify image size and class
-function the_mtm_header_logo( $class = 'header-logo', $size = 'large' ) {
+function the_mtm_header_logo( $class = 'header-logo', $size = 'medium_large' ) {
 
-	if ( false !== mtm_acf_check() ) {
+	if ( false !== mtm_acf_check() ) :
 
-		if ( get_field( 'mtm_header_logo', 'option' ) ) { // make sure field value exists 
+		if ( get_field( 'mtm_header_logo', 'option' ) ) : // make sure header logo exists 
 
 			$image = get_field( 'mtm_header_logo', 'option' );
 			$alt = $image['alt'];
-			$thumb = $image['sizes'][ $size ];
-			?>
+			$thumb = $image['sizes'][ $size ]; ?>
 
 			<a href="<?php echo esc_url( home_url() ); ?>"><img class="<?php echo $class ?>" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $alt ); ?>" /></a>
 		
-		<?php } else { // If nothing else is entered, show the blog name as usual ?> 
+		<?php else : // If nothing else is entered, show the blog name as usual ?> 
 
 			<a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a>
 		
-		<?php }
+		<?php endif;
 
-	} else { // If ACF is inactive, show the blog name as usual ?> 
+	else : // If ACF is inactive, show the blog name as usual ?> 
 
 		<a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a>
 	
-	<?php }
+	<?php endif;
+}
 
+// Output mobile logo inside image tag, with link to homepage
+// Optionally specify image size and class
+function the_mtm_mobile_logo( $class = 'header-logo-mobile', $size = 'medium' ) {
+
+	if ( get_field( 'mtm_mobile_logo', 'option' ) ) : // make sure mobile logo exists
+
+		$image2 = get_field( 'mtm_mobile_logo', 'option' );
+		$alt2 = $image2['alt'];
+		$thumb2 = $image2['sizes'][ 'medium' ]; ?>
+
+		<a href="<?php echo esc_url( home_url() ); ?>"><img class="<?php echo $class; ?>" src="<?php echo esc_url( $thumb2 ); ?>" alt="<?php echo esc_attr( $alt2 ); ?>" /></a>
+
+	<?php endif;
 }
 
 // Outputs additional header text
@@ -90,7 +103,7 @@ function the_mtm_footer_copyright() {
 
 	}
 
-		echo $html;
+		echo '<p>' . $html . '</p>';
 
 }
 

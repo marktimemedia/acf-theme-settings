@@ -7,11 +7,13 @@ Registers some default WordPress theme settings using Advanced Custom Fields Pro
 
 ##### Header
 * Header Logo
+* Mobile Logo
 * Additional Header Text (like phone number, etc)
 
 ##### Footer
 * Footer Logo
-* Additional Footer Text (like copyrights, etc)
+* Copyright Text (next to copyright year)
+* Additional Footer Text (like address, etc)
 
 ##### Defaults
 * Default Image (if there is no post thumbnail)
@@ -19,8 +21,11 @@ Registers some default WordPress theme settings using Advanced Custom Fields Pro
 
 
 ### Helper Functions
-`the_mtm_header_logo( $class = 'header-logo', $size = 'large' )`
+`the_mtm_header_logo( $class = 'header-logo', $size = 'medium_large' )`
 Output header logo inside image tag, with link to homepage. Optionally specify image size and class. Falls back to Site Name if nothing is entered.
+
+`the_mtm_mobile_logo( $class = 'header-logo-mobile', $size = 'medium' )`
+Output mobile logo inside image tag, with link to homepage. Optionally specify image size and class.
 
 `the_mtm_header_text()`
 Outputs header text if any exists
