@@ -123,7 +123,7 @@ function the_mtm_footer_text() {
 // Outputs social icons with custom classes based on social network name
 // Compatible with Font Awesome if installed
 // Fallback for unsupported social networks as well
-function the_mtm_social_icons( $prepend = '', $showtext = false ) {
+function the_mtm_social_hexagon_icons( $prepend = '', $showtext = false ) {
 
 	//$btntxt = '';
 
