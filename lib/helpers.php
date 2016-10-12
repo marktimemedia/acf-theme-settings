@@ -123,7 +123,7 @@ function the_mtm_footer_text() {
 // Outputs social icons with custom classes based on social network name
 // Compatible with Font Awesome if installed
 // Fallback for unsupported social networks as well
-function the_mtm_social_hexagon_icons( $prepend = '', $showtext = false ) {
+function the_mtm_social_icons( $prepend = '', $showtext = false ) {
 
 	//$btntxt = '';
 
@@ -154,6 +154,20 @@ function the_mtm_social_hexagon_icons( $prepend = '', $showtext = false ) {
 		endif;
 	endif;
 }
+
+// Social Icons Shortcode for use in content or widgets
+function social_icon_shortcode( $atts ) {
+  $a = shortcode_atts( array(
+        'prepend' => '',
+        'showtext' => false,
+        // ...etc
+    ), $atts );
+  ob_start();
+  the_mtm_social_icons( $a['prepend'], $a['showtext'] );
+  return ob_get_clean();
+}
+
+add_shortcode( 'social_icons', 'social_icon_shortcode' );
 
 // Outputs the post thumbnail with fallback for the default image
 function the_mtm_post_thumbnail( $size = 'full', $class = '', $link = true, $attr ='' ) {
