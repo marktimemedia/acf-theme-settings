@@ -3,10 +3,8 @@
 	Plugin Name: ACF Options Page
 	Description: Create standard options page for ACF Theme Options (Needs ACF installed). Must be activated before all other ACF dependent plugins.
 	Author: Marktime Media
-	Version: 1.1.2
+	Version: 1.1
 	Author URI: http://marktimemedia.com
-	GitHub Plugin URI: marktimemedia/acf-theme-settings
-	GitHub Plugin URI: https://github.com/marktimemedia/acf-theme-settings
  */
 
 define( 'MTM_OPTIONS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
