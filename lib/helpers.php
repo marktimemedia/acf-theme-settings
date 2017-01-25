@@ -73,7 +73,7 @@ function the_mtm_header_text() {
 /**
 * Outputs footer logo inside image tag, with link to homepage
 */
-function the_mtm_footer_logo(  $path = '' $class = 'footer-logo', $size = 'large'  ) {
+function the_mtm_footer_logo(  $path = '', $class = 'footer-logo', $size = 'large'  ) {
 
 	if ( false !== mtm_acf_check() ) {
 
