@@ -7,36 +7,42 @@ function mtm_acf_check() { // Does ACF Exist?
 	}
 }
 
-// Output header logo inside image tag, with link to homepage
-// Optionally specify image size and class
-function the_mtm_header_logo( $class = 'header-logo', $size = 'medium_large' ) {
+/**
+* Output header logo inside image tag, with link to homepage
+* Optionally specify image size and class
+*/
+function the_mtm_header_logo( $path = '', $class = 'header-logo', $size = 'large' ) {
 
-	if ( false !== mtm_acf_check() ) :
+	if ( false !== mtm_acf_check() ) {
 
-		if ( get_field( 'mtm_header_logo', 'option' ) ) : // make sure header logo exists 
+		if ( get_field( 'mtm_header_logo', 'option' ) ) { // make sure field value exists 
 
 			$image = get_field( 'mtm_header_logo', 'option' );
 			$alt = $image['alt'];
-			$thumb = $image['sizes'][ $size ]; ?>
+			$thumb = $image['sizes'][ $size ];
+			?>
 
-			<a href="<?php echo esc_url( home_url() ); ?>"><img class="<?php echo $class ?>" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $alt ); ?>" /></a>
+			<a href="<?php echo esc_url( home_url( $path ) ); ?>"><img class="<?php echo $class ?>" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $alt ); ?>" /></a>
 		
-		<?php else : // If nothing else is entered, show the blog name as usual ?> 
+		<?php } else { // If nothing else is entered, show the blog name as usual ?> 
 
-			<a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a>
+			<a href="<?php echo esc_url( home_url( $path ) ); ?>"><?php bloginfo( 'name' ); ?></a>
 		
-		<?php endif;
+		<?php }
 
-	else : // If ACF is inactive, show the blog name as usual ?> 
+	} else { // If ACF is inactive, show the blog name as usual ?> 
 
-		<a href="<?php echo esc_url( home_url() ); ?>"><?php bloginfo( 'name' ); ?></a>
+		<a href="<?php echo esc_url( home_url( $path ) ); ?>"><?php bloginfo( 'name' ); ?></a>
 	
-	<?php endif;
+	<?php }
+
 }
 
-// Output mobile logo inside image tag, with link to homepage
-// Optionally specify image size and class
-function the_mtm_mobile_logo( $class = 'header-logo-mobile', $size = 'medium' ) {
+/**
+* Output mobile logo inside image tag, with link to homepage
+* Optionally specify image size and class
+*/
+function the_mtm_mobile_logo( $path = '', $class = 'header-logo-mobile', $size = 'medium' ) {
 
 	if ( get_field( 'mtm_mobile_logo', 'option' ) ) : // make sure mobile logo exists
 
@@ -44,12 +50,14 @@ function the_mtm_mobile_logo( $class = 'header-logo-mobile', $size = 'medium' ) 
 		$alt2 = $image2['alt'];
 		$thumb2 = $image2['sizes'][ 'medium' ]; ?>
 
-		<a href="<?php echo esc_url( home_url() ); ?>"><img class="<?php echo $class; ?>" src="<?php echo esc_url( $thumb2 ); ?>" alt="<?php echo esc_attr( $alt2 ); ?>" /></a>
+		<a href="<?php echo esc_url( home_url( $path ) ); ?>"><img class="<?php echo $class; ?>" src="<?php echo esc_url( $thumb2 ); ?>" alt="<?php echo esc_attr( $alt2 ); ?>" /></a>
 
 	<?php endif;
 }
 
-// Outputs additional header text
+/**
+* Outputs additional header text
+*/
 function the_mtm_header_text() {
 
 	if ( false !== mtm_acf_check() ) {
@@ -62,8 +70,10 @@ function the_mtm_header_text() {
 	}
 }
 
-// Outputs footer logo inside image tag, with link to homepage
-function the_mtm_footer_logo(  $class = 'footer-logo', $size = 'large'  ) {
+/**
+* Outputs footer logo inside image tag, with link to homepage
+*/
+function the_mtm_footer_logo(  $path = '' $class = 'footer-logo', $size = 'large'  ) {
 
 	if ( false !== mtm_acf_check() ) {
 
@@ -74,13 +84,15 @@ function the_mtm_footer_logo(  $class = 'footer-logo', $size = 'large'  ) {
 			$thumb = $image['sizes'][ $size ];
 			?>
 
-			<a href="<?php echo esc_url( home_url() ); ?>"><img class="<?php echo $class ?>" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $alt ); ?>" /></a>
+			<a href="<?php echo esc_url( home_url( $path ) ); ?>"><img class="<?php echo $class ?>" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $alt ); ?>" /></a>
 
 		<?php } 
 	}
 }
 
-// Outputs copyright text with year and date
+/**
+* Outputs copyright text with year and date
+*/
 function the_mtm_footer_copyright() {
 
 	$html = '';
@@ -107,7 +119,9 @@ function the_mtm_footer_copyright() {
 
 }
 
-// Outputs additional footer text
+/**
+* Outputs additional footer text
+*/
 function the_mtm_footer_text() {
 
 	if ( false !== mtm_acf_check() ) {
@@ -120,9 +134,11 @@ function the_mtm_footer_text() {
 	}
 }
 
-// Outputs social icons with custom classes based on social network name
-// Compatible with Font Awesome if installed
-// Fallback for unsupported social networks as well
+/**
+* Outputs social icons with custom classes based on social network name
+* Compatible with Font Awesome if installed
+* Fallback for unsupported social networks as well
+*/
 function the_mtm_social_icons( $prepend = '', $showtext = false ) {
 
 	//$btntxt = '';
@@ -155,7 +171,9 @@ function the_mtm_social_icons( $prepend = '', $showtext = false ) {
 	endif;
 }
 
-// Outputs the post thumbnail with fallback for the default image
+/**
+* Outputs the post thumbnail with fallback for the default image
+*/
 function the_mtm_post_thumbnail( $size = 'full', $class = '', $link = true, $attr ='' ) {
 
 	if ( false !== mtm_acf_check() ) {
@@ -179,7 +197,9 @@ function the_mtm_post_thumbnail( $size = 'full', $class = '', $link = true, $att
 	}
 }
 
-// Outputs the post thumbnail with fallback for the first inline image, then the default image
+/**
+* Outputs the post thumbnail with fallback for the first inline image, then the default image
+*/
 function the_mtm_post_thumbnail_inline( $post_ID = '',  $size = 'full', $class = '', $link = true, $attr ='' ) {
 
 	$attachments = get_children( 'post_parent='. $post_ID .'&post_type=attachment&post_mime_type=image' );
