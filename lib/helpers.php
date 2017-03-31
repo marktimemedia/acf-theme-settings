@@ -139,7 +139,7 @@ function the_mtm_footer_text() {
 * Compatible with Font Awesome if installed
 * Fallback for unsupported social networks as well
 */
-function the_mtm_social_icons( $prepend = '', $showtext = false ) {
+function the_mtm_social_icons( $prepend = '', $showtext = false, $btntxt = '' ) {
 
 	//$btntxt = '';
 
