@@ -3,7 +3,7 @@
 	Plugin Name: ACF Options Page
 	Description: Create standard options page for ACF Theme Options (Needs ACF installed). Must be activated before all other ACF dependent plugins.
 	Author: Marktime Media
-	Version: 1.2.1
+	Version: 1.2.2
 	Author URI: http://marktimemedia.com
  */
 
