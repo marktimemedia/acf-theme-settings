@@ -3,7 +3,7 @@
 	Plugin Name: ACF Options Page
 	Description: Create standard options page for ACF Theme Options (Needs ACF installed). Must be activated before all other ACF dependent plugins.
 	Author: Marktime Media
-	Version: 1.3
+	Version: 1.3.1
 	Author URI: http://marktimemedia.com
  */
 
@@ -44,40 +44,43 @@ function mtm_options_page() {
 			'parent_slug'	=> 'theme-general-settings',
 		) );
 
-		acf_add_options_sub_page( array(
-			'page_title' 	=> 'Email Settings',
-			'menu_title'	=> 'Emails',
-			'parent_slug'	=> 'theme-general-settings',
-		) );
+		// acf_add_options_sub_page( array(
+		// 	'page_title' 	=> 'Email Settings',
+		// 	'menu_title'	=> 'Emails',
+		// 	'parent_slug'	=> 'theme-general-settings',
+		// ) );
 	}	
 }
 
 add_action( 'init', 'mtm_options_page' );
 
-/**
-* Email Notification Defaults
-*/
-$mtm_email = get_field( 'mtm_default_email', 'options' );
-$mtm_name = get_field( 'mtm_default_from_name', 'options' );
+// /**
+// * Email Notification Defaults
+// * This is a TODO because it actually breaks the email right now
+// * Use https://wordpress.org/plugins/wp-mailfrom-ii/ instead
+// */
+// $mtm_email = get_field( 'mtm_default_email', 'options' );
+// $mtm_name = get_field( 'mtm_default_from_name', 'options' );
 
-if( !function_exists( 'mtm_mail_from' ) ) { // so my theme doesn't break it
-	
-	if( $mtm_email ) {
-		
-		function mtm_mail_from ( $email ){
-		  return $mtm_email; // new email address from sender.
-		}
-		add_filter( 'wp_mail_from', 'mtm_mail_from' );
-	}	
-}
 
-if( !function_exists( 'mtm_mail_name' ) ) { // so my theme doesn't break it
+// if( !function_exists( 'mtm_mail_from' ) ) { // so my theme doesn't break it
 	
-	if( $mtm_name ) {
+// 	if( $mtm_email ) {
 		
-		function mtm_mail_name( $name ){
-		  return $mtm_name; // new email name from sender.
-		}
-		add_filter( 'wp_mail_from_name', 'mtm_mail_name' );
-	}	
-}
+// 		function mtm_mail_from ( $email ){
+// 		  return $mtm_email; // new email address from sender.
+// 		}
+// 		add_filter( 'wp_mail_from', 'mtm_mail_from' );
+// 	}	
+// }
+
+// if( !function_exists( 'mtm_mail_name' ) ) { // so my theme doesn't break it
+	
+// 	if( $mtm_name ) {
+		
+// 		function mtm_mail_name( $name ){
+// 		  return $mtm_name; // new email name from sender.
+// 		}
+// 		add_filter( 'wp_mail_from_name', 'mtm_mail_name' );
+// 	}	
+// }

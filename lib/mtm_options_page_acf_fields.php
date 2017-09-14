@@ -286,65 +286,65 @@ acf_add_local_field_group(array (
 	'description' => '',
 ));
 
-acf_add_local_field_group(array (
-	'key' => 'group_5993acca39c49',
-	'title' => 'Emails',
-	'fields' => array (
-		array (
-			'key' => 'field_5993ade79b4fc',
-			'label' => 'Default Email',
-			'name' => 'mtm_default_email',
-			'type' => 'email',
-			'instructions' => 'The email address that will show up on WordPress-generated emails (defaults to wordpress@your-domain.com)',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array (
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-		),
-		array (
-			'key' => 'field_5993adf79b4fd',
-			'label' => 'Default "From" Name',
-			'name' => 'mtm_default_from_name',
-			'type' => 'text',
-			'instructions' => 'The "From" name that will show up on WordPress-generated emails (defaults to WordPress)',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array (
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'default_value' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-			'maxlength' => '',
-		),
-	),
-	'location' => array (
-		array (
-			array (
-				'param' => 'options_page',
-				'operator' => '==',
-				'value' => 'acf-options-emails',
-			),
-		),
-	),
-	'menu_order' => 0,
-	'position' => 'normal',
-	'style' => 'seamless',
-	'label_placement' => 'top',
-	'instruction_placement' => 'label',
-	'hide_on_screen' => '',
-	'active' => 1,
-	'description' => '',
-));
+// acf_add_local_field_group(array (
+// 	'key' => 'group_5993acca39c49',
+// 	'title' => 'Emails',
+// 	'fields' => array (
+// 		array (
+// 			'key' => 'field_5993ade79b4fc',
+// 			'label' => 'Default Email',
+// 			'name' => 'mtm_default_email',
+// 			'type' => 'email',
+// 			'instructions' => 'The email address that will show up on WordPress-generated emails (defaults to wordpress@your-domain.com)',
+// 			'required' => 0,
+// 			'conditional_logic' => 0,
+// 			'wrapper' => array (
+// 				'width' => '',
+// 				'class' => '',
+// 				'id' => '',
+// 			),
+// 			'default_value' => '',
+// 			'placeholder' => '',
+// 			'prepend' => '',
+// 			'append' => '',
+// 		),
+// 		array (
+// 			'key' => 'field_5993adf79b4fd',
+// 			'label' => 'Default "From" Name',
+// 			'name' => 'mtm_default_from_name',
+// 			'type' => 'text',
+// 			'instructions' => 'The "From" name that will show up on WordPress-generated emails (defaults to WordPress)',
+// 			'required' => 0,
+// 			'conditional_logic' => 0,
+// 			'wrapper' => array (
+// 				'width' => '',
+// 				'class' => '',
+// 				'id' => '',
+// 			),
+// 			'default_value' => '',
+// 			'placeholder' => '',
+// 			'prepend' => '',
+// 			'append' => '',
+// 			'maxlength' => '',
+// 		),
+// 	),
+// 	'location' => array (
+// 		array (
+// 			array (
+// 				'param' => 'options_page',
+// 				'operator' => '==',
+// 				'value' => 'acf-options-emails',
+// 			),
+// 		),
+// 	),
+// 	'menu_order' => 0,
+// 	'position' => 'normal',
+// 	'style' => 'seamless',
+// 	'label_placement' => 'top',
+// 	'instruction_placement' => 'label',
+// 	'hide_on_screen' => '',
+// 	'active' => 1,
+// 	'description' => '',
+// ));
 
 endif;
