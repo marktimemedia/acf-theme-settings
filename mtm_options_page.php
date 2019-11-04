@@ -1,9 +1,9 @@
 <?php
 /*
-	Plugin Name: ACF Options Page
-	Description: Create standard options page for ACF Theme Options (Needs ACF installed). Must be activated before all other ACF dependent plugins.
+	Plugin Name: ACF Site Options & Customizer
+	Description: Create standard options page for ACF Theme Options (Needs ACF installed), adds global logo options to customizer. Must be activated before all other ACF dependent plugins.
 	Author: Marktime Media
-	Version: 1.3.2
+	Version: 2.0
 	Author URI: http://marktimemedia.com
  */
 
@@ -11,7 +11,6 @@ define( 'MTM_OPTIONS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 
 require_once( MTM_OPTIONS_PLUGIN_DIR . 'lib/mtm_options_page_acf_fields.php' );
 require_once( MTM_OPTIONS_PLUGIN_DIR . 'lib/helpers.php' );
-
 
 // Register Theme Options Pages
 function mtm_options_page() {
@@ -27,60 +26,77 @@ function mtm_options_page() {
 		) );
 
 		acf_add_options_sub_page( array(
-			'page_title' 	=> 'Theme Header Settings',
-			'menu_title'	=> 'Header',
+			'page_title' 	=> 'Global Text & Settings',
+			'menu_title'	=> 'Global Text & Settings',
+			'menu_slug' => 'global-text-settings',
 			'parent_slug'	=> 'theme-general-settings',
 		) );
 
 		acf_add_options_sub_page( array(
-			'page_title' 	=> 'Theme Default Settings',
-			'menu_title'	=> 'Defaults',
+			'page_title' 	=> 'Social & Sharing Settings',
+			'menu_title'	=> 'Social & Sharing',
+			'menu_slug' => 'social-sharing-settings',
 			'parent_slug'	=> 'theme-general-settings',
 		) );
-
-		acf_add_options_sub_page( array(
-			'page_title' 	=> 'Theme Footer Settings',
-			'menu_title'	=> 'Footer',
-			'parent_slug'	=> 'theme-general-settings',
-		) );
-
-		// acf_add_options_sub_page( array(
-		// 	'page_title' 	=> 'Email Settings',
-		// 	'menu_title'	=> 'Emails',
-		// 	'parent_slug'	=> 'theme-general-settings',
-		// ) );
 	}
 }
 
 add_action( 'init', 'mtm_options_page' );
 
-// /**
-// * Email Notification Defaults
-// * This is a TODO because it actually breaks the email right now
-// * Use https://wordpress.org/plugins/wp-mailfrom-ii/ instead
-// */
-// $mtm_email = get_field( 'mtm_default_email', 'options' );
-// $mtm_name = get_field( 'mtm_default_from_name', 'options' );
 
+// Register Customizer Settings
 
-// if( !function_exists( 'mtm_mail_from' ) ) { // so my theme doesn't break it
+function mtm_customize_register( $wp_customize ) {
 
-// 	if( $mtm_email ) {
+	$custom_logo_args = get_theme_support( 'custom-logo' );
 
-// 		function mtm_mail_from ( $email ){
-// 		  return $mtm_email; // new email address from sender.
-// 		}
-// 		add_filter( 'wp_mail_from', 'mtm_mail_from' );
-// 	}
-// }
+	// Mobile Logo
+	$wp_customize->add_setting(
+    'mtm_mobile_logo', array(
+        'default'      => '',
+        'transport'    => 'postMessage'
+		  )
+	);
 
-// if( !function_exists( 'mtm_mail_name' ) ) { // so my theme doesn't break it
+	$wp_customize->add_control(
+    new WP_Customize_Cropped_Image_Control(
+        $wp_customize,
+        'mtm_mobile_logo',
+        array(
+            'label'    => 'Mobile Logo',
+            'settings' => 'mtm_mobile_logo',
+            'section'  => 'title_tagline',
+						'height'        => $custom_logo_args[0]['height'],
+						'width'         => $custom_logo_args[0]['width'],
+						'flex_height'   => $custom_logo_args[0]['flex-height'],
+						'flex_width'    => $custom_logo_args[0]['flex-width']
+        )
+    )
+	);
 
-// 	if( $mtm_name ) {
+	// Mobile Logo
+	$wp_customize->add_setting(
+    'mtm_footer_logo', array(
+        'default'      => '',
+        'transport'    => 'postMessage'
+		  )
+	);
 
-// 		function mtm_mail_name( $name ){
-// 		  return $mtm_name; // new email name from sender.
-// 		}
-// 		add_filter( 'wp_mail_from_name', 'mtm_mail_name' );
-// 	}
-// }
+	$wp_customize->add_control(
+    new WP_Customize_Cropped_Image_Control(
+        $wp_customize,
+        'mtm_footer_logo',
+        array(
+            'label'    => 'Footer Logo',
+            'settings' => 'mtm_footer_logo',
+            'section'  => 'title_tagline',
+						'height'        => $custom_logo_args[0]['height'],
+						'width'         => $custom_logo_args[0]['width'],
+						'flex_height'   => $custom_logo_args[0]['flex-height'],
+						'flex_width'    => $custom_logo_args[0]['flex-width']
+        )
+    )
+	);
+
+}
+add_action( 'customize_register', 'mtm_customize_register' );

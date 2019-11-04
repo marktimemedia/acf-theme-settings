@@ -14,28 +14,20 @@ function mtm_acf_check() { // Does ACF Exist?
 if( !function_exists( 'the_mtm_header_logo' ) ) {
 	function the_mtm_header_logo( $path = '', $class = 'header-logo', $size = 'large' ) {
 
-		if ( false !== mtm_acf_check() ) {
+			if ( has_custom_logo() ) { // make sure field value exists
 
-			if ( get_field( 'mtm_header_logo', 'option' ) ) { // make sure field value exists
-
-				$image = get_field( 'mtm_header_logo', 'option' );
-				$alt = $image['alt'];
-				$thumb = $image['sizes'][ $size ];
+				$alt = get_bloginfo( 'name' );
+				$custom_logo_id = get_theme_mod( 'custom_logo' );
+				$thumb = wp_get_attachment_image_src( $custom_logo_id , $size );
 				?>
 
-				<a href="<?php echo esc_url( home_url( $path ) ); ?>"><img class="<?php echo $class ?>" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $alt ); ?>" /></a>
+				<a href="<?php echo esc_url( home_url( $path ) ); ?>"><img class="<?php echo $class ?>" src="<?php echo esc_url( $thumb[0] ); ?>" alt="<?php echo esc_attr( $alt ); ?>" /></a>
 
 			<?php } else { // If nothing else is entered, show the blog name as usual ?>
 
 				<a href="<?php echo esc_url( home_url( $path ) ); ?>"><?php bloginfo( 'name' ); ?></a>
 
 			<?php }
-
-		} else { // If ACF is inactive, show the blog name as usual ?>
-
-			<a href="<?php echo esc_url( home_url( $path ) ); ?>"><?php bloginfo( 'name' ); ?></a>
-
-		<?php }
 
 	}
 }
@@ -47,15 +39,35 @@ if( !function_exists( 'the_mtm_header_logo' ) ) {
 if( !function_exists( 'the_mtm_mobile_logo' ) ) {
 	function the_mtm_mobile_logo( $path = '', $class = 'header-logo-mobile', $size = 'medium' ) {
 
-		if ( get_field( 'mtm_mobile_logo', 'option' ) ) : // make sure mobile logo exists
+		if ( get_theme_mod( 'mtm_mobile_logo') ) : // make sure mobile logo exists
 
-			$image2 = get_field( 'mtm_mobile_logo', 'option' );
-			$alt2 = $image2['alt'];
-			$thumb2 = $image2['sizes'][ 'medium' ]; ?>
+			$alt2 = get_bloginfo( 'name' );
+			$custom_logo_id2 = get_theme_mod( 'mtm_mobile_logo' );
+			$thumb2 = wp_get_attachment_image_src( $custom_logo_id2 , $size );
+			?>
 
-			<a href="<?php echo esc_url( home_url( $path ) ); ?>"><img class="<?php echo $class; ?>" src="<?php echo esc_url( $thumb2 ); ?>" alt="<?php echo esc_attr( $alt2 ); ?>" /></a>
+			<a href="<?php echo esc_url( home_url( $path ) ); ?>"><img class="<?php echo $class; ?>" src="<?php echo esc_url( $thumb2[0] ); ?>" alt="<?php echo esc_attr( $alt2 ); ?>" /></a>
 
 		<?php endif;
+	}
+}
+
+/**
+* Outputs footer logo inside image tag, with link to homepage
+*/
+if( !function_exists( 'the_mtm_footer_logo' ) ) {
+	function the_mtm_footer_logo(  $path = '', $class = 'footer-logo', $size = 'large'  ) {
+
+			if ( get_theme_mod( 'mtm_footer_logo' ) ) { // make sure field value exists
+
+				$alt = get_bloginfo( 'name' );
+				$custom_logo_id = get_theme_mod( 'mtm_footer_logo' );
+				$thumb = wp_get_attachment_image_src( $custom_logo_id , $size );
+				?>
+
+				<a href="<?php echo esc_url( home_url( $path ) ); ?>"><img class="<?php echo $class ?>" src="<?php echo esc_url( $thumb[0] ); ?>" alt="<?php echo esc_attr( $alt ); ?>" /></a>
+
+			<?php }
 	}
 }
 
@@ -76,27 +88,7 @@ if( !function_exists( 'the_mtm_header_text' ) ) {
 	}
 }
 
-/**
-* Outputs footer logo inside image tag, with link to homepage
-*/
-if( !function_exists( 'the_mtm_footer_logo' ) ) {
-	function the_mtm_footer_logo(  $path = '', $class = 'footer-logo', $size = 'large'  ) {
 
-		if ( false !== mtm_acf_check() ) {
-
-			if ( get_field( 'mtm_footer_logo', 'option' ) ) { // make sure field value exists
-
-				$image = get_field( 'mtm_footer_logo', 'option' );
-				$alt = $image['alt'];
-				$thumb = $image['sizes'][ $size ];
-				?>
-
-				<a href="<?php echo esc_url( home_url( $path ) ); ?>"><img class="<?php echo $class ?>" src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $alt ); ?>" /></a>
-
-			<?php }
-		}
-	}
-}
 
 /**
 * Outputs copyright text with year and date

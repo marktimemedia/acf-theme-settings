@@ -1,23 +1,22 @@
-# ACF Options Page 
+# ACF Site Options & Customizer
 
 Registers some default WordPress theme settings using Advanced Custom Fields Pro, with helper functions to include in the theme
+Adds additional logo settings to the WordPress Customizer
 
 
 ### Theme Settings
 
-##### Header
-* Header Logo
+##### In Customizer
 * Mobile Logo
-* Additional Header Text (like phone number, etc)
-
-##### Footer
 * Footer Logo
+
+##### Global Defaults
 * Copyright Text (next to copyright year)
 * Additional Footer Text (like address, etc)
-
-##### Defaults
 * Default Image (if there is no post thumbnail)
-* Social Media Buttons (to be used anywhere) *Yes, Jetpack just released a similar feature, literally on the same day I built this for myself* 
+
+##### Social Sharing
+* Social Media Buttons (to be used anywhere) *Yes, Jetpack just released a similar feature, literally on the same day I built this for myself*
 
 
 ### Helper Functions
