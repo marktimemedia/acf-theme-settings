@@ -3,7 +3,7 @@
 	Plugin Name: ACF Site Options & Customizer
 	Description: Create standard options page for ACF Theme Options (Needs ACF installed), adds global logo options to customizer. Must be activated before all other ACF dependent plugins.
 	Author: Marktime Media
-	Version: 2.0
+	Version: 2.1
 	Author URI: http://marktimemedia.com
  */
 
@@ -17,26 +17,33 @@ function mtm_options_page() {
 
 	if ( false !== mtm_acf_check() ) {
 
-		acf_add_options_page( array(
-			'page_title' 	=> 'Theme General Settings',
-			'menu_title'	=> 'Theme Settings',
-			'menu_slug' 	=> 'theme-general-settings',
-			'capability'	=> 'edit_posts',
-			'redirect'		=> true // false gives this its own page
-		) );
+		// acf_add_options_page( array(
+		// 	'page_title' 	=> 'Theme General Settings',
+		// 	'menu_title'	=> 'Theme Settings',
+		// 	'menu_slug' 	=> 'theme-general-settings',
+		// 	'capability'	=> 'edit_posts',
+		// 	'redirect'		=> true // false gives this its own page
+		// ) );
 
 		acf_add_options_sub_page( array(
-			'page_title' 	=> 'Global Text & Settings',
-			'menu_title'	=> 'Global Text & Settings',
+			'page_title' 	=> __('Global Text & Images', 'mtm'),
+			'menu_title'	=> __('Global Text & Images', 'mtm'),
 			'menu_slug' => 'global-text-settings',
-			'parent_slug'	=> 'theme-general-settings',
+			'parent_slug'	=> 'options-general.php',
 		) );
 
 		acf_add_options_sub_page( array(
-			'page_title' 	=> 'Social & Sharing Settings',
-			'menu_title'	=> 'Social & Sharing',
+			'page_title' 	=> __('Social & Sharing', 'mtm'),
+			'menu_title'	=> __('Social & Sharing', 'mtm'),
 			'menu_slug' => 'social-sharing-settings',
-			'parent_slug'	=> 'theme-general-settings',
+			'parent_slug'	=> 'options-general.php',
+		) );
+
+		acf_add_options_sub_page( array(
+			'page_title' 	=> __('Special Pages', 'mtm'),
+			'menu_title'	=> __('Special Pages', 'mtm'),
+			'menu_slug' => 'special-pages',
+			'parent_slug'	=> 'options-general.php',
 		) );
 	}
 }
@@ -74,7 +81,7 @@ function mtm_customize_register( $wp_customize ) {
     )
 	);
 
-	// Mobile Logo
+	// Footer Logo
 	$wp_customize->add_setting(
     'mtm_footer_logo', array(
         'default'      => '',
